@@ -47,7 +47,7 @@ const fetchTopSongs = async (token, setSongs, setError ) => {
           Authorization: `Bearer ${token}`
         },
         params: {
-          limit: 50
+          limit: 10
         }
       }
     );

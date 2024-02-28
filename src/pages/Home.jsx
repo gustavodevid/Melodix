@@ -67,9 +67,7 @@ const SpotifyPlayer = () => {
   } else {
     return (
         <>
-      <Navbar />
-      <Hero />
-      <LogoCollection />
+      <Navbar isLoginPage={false} />
         </>
     );
   }

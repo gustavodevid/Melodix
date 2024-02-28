@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ isLoginPage }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -22,18 +22,22 @@ const Navbar = () => {
                 </button>
                 <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} style={{right: 0}}>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li className="nav-item" style={{opacity:'0.7'}}>
-                            <Link disabled className="nav-link" style={{color: 'var(--secondary)'}}>Discover</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/artists" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Artists</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/albums" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Albums</Link>
-                        </li>
-                        <li className="nav-item">
-                        <Link className="nav-link" to="/songs" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Songs</Link>
-                        </li>
+                    {!isLoginPage && (
+                            <>
+                                <li className="nav-item" style={{opacity:'0.7'}}>
+                                    <Link disabled className="nav-link" style={{color: 'var(--secondary)'}}>Discover tops</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/artists" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Artists</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/albums" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Albums</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/songs" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Songs</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                     {/* <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

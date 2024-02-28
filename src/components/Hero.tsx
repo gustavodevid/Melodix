@@ -3,12 +3,20 @@ import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 export default function Hero() {
+  const clientId = '879496c5b323472bbd08843975309a97';
+  const redirectUri = encodeURIComponent('http://localhost:5173/home'); 
+  const scope = encodeURIComponent('user-read-email');
+
+  const handleLogin = () => {
+    const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+    window.location.href = authUrl;
+  };
   return (
     <Box
       id="hero"
@@ -61,28 +69,8 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' }, fontFamily:'Poppins' }}
           >
-            <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Procure um artista"
-              style={{fontFamily:'Poppins', 
-              backgroundColor:'var(--secondary)',
-              borderRadius: '10px',
-              color: '#fff',
-            }}
-              inputProps={{
-                autocomplete: 'off',
-                ariaLabel: 'Search for a artist',
-                style: {
-                  color: 'var(--primary)',
-                },
-              }}
-            />
-            <Button variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--terciary)', color:'var(--secondary)'}}>
-              Procurar
+            <Button onClick={handleLogin} variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--terciary)', color:'var(--secondary)'}}>
+              Login com Spotify
             </Button>
           </Stack>
         </Stack>

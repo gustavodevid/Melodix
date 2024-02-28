@@ -12,6 +12,8 @@ const Navbar = ({ isLoginPage }) => {
         <nav className="navbar navbar-expand-lg">
             <div className="container">
                 <Link className="navbar-brand" to="#" style={{color: 'var(--secondary)'}}>Harmony</Link>
+                {!isLoginPage && (
+                        <>
                 <button 
                     className="navbar-toggler" 
                     type="button" 
@@ -22,8 +24,6 @@ const Navbar = ({ isLoginPage }) => {
                 </button>
                 <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} style={{right: 0}}>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {!isLoginPage && (
-                            <>
                                 <li className="nav-item" style={{opacity:'0.7'}}>
                                     <Link disabled className="nav-link" style={{color: 'var(--secondary)'}}>Discover tops</Link>
                                 </li>
@@ -36,14 +36,10 @@ const Navbar = ({ isLoginPage }) => {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/songs" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Songs</Link>
                                 </li>
+                    </ul>
+                </div>
                             </>
                         )}
-                    </ul>
-                    {/* <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-primary" type="submit">Search</button>
-                    </form> */}
-                </div>
             </div>
         </nav>
     );

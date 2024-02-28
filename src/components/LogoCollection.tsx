@@ -25,7 +25,8 @@ export default function LogoCollection() {
       <Typography
         component="p"
         variant="subtitle2"
-        align="center"
+        align="center" 
+        style={{color:'var(--secondary)'}}
       >
        Powered by
       </Typography>

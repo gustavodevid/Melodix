@@ -14,11 +14,10 @@ export default function Hero() {
       id="hero"
       sx={({
         width: '100%',
-        backgroundColor: 'var(--primary)',
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat'
       })}
-    >
+      >
       <Container
         sx={{
           display: 'flex',
@@ -52,7 +51,7 @@ export default function Hero() {
              Harmony é uma heroína digital que vive no mundo da música
             </Typography>
           </Typography>
-          <Typography variant="body2" textAlign="center" color="text.secondary" style={{fontFamily:'Poppins'}}>
+          <Typography variant="body2" textAlign="center" color='var(--secondary)' style={{fontFamily:'Poppins'}}>
           Ela é uma personagem carismática e apaixonada pela música, sempre pronta para ajudar os usuários a descobrir novas músicas, artistas e estilos.
           </Typography>
           <Stack
@@ -69,13 +68,13 @@ export default function Hero() {
               variant="outlined"
               aria-label="Enter your email address"
               placeholder="Procure um artista"
-              style={{fontFamily:'Poppins', color:'var(--secondary)'}}
+              style={{fontFamily:'Poppins', backgroundColor:'var(--secondary)'}}
               inputProps={{
                 autocomplete: 'off',
                 ariaLabel: 'Search for a artist',
               }}
             />
-            <Button variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--secondary)'}}>
+            <Button variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--secondary)', color:'var(--primary)'}}>
               Procurar
             </Button>
           </Stack>

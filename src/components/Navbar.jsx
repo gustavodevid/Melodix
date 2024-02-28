@@ -11,7 +11,7 @@ const Navbar = () => {
     return (    
         <nav className="navbar navbar-expand-lg">
             <div className="container">
-                <Link className="navbar-brand" to="#">Harmony</Link>
+                <Link className="navbar-brand" to="#" style={{color: 'var(--secondary)'}}>Harmony</Link>
                 <button 
                     className="navbar-toggler" 
                     type="button" 
@@ -22,13 +22,13 @@ const Navbar = () => {
                 <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} style={{right: 0}}>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/artists" onClick={toggleMenu}>Artists</Link>
+                            <Link className="nav-link" to="/artists" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Artists</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/livros" onClick={toggleMenu}>Albums</Link>
+                            <Link className="nav-link" to="/livros" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Albums</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={toggleMenu}>Songs</a>
+                            <a className="nav-link" href="#" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Songs</a>
                         </li>
                     </ul>
                     {/* <form className="d-flex">

@@ -19,8 +19,8 @@ const Navbar = () => {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} style={{right: 0}}>
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link" to="/artists" onClick={toggleMenu}>Artists</Link>
                         </li>

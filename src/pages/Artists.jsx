@@ -70,11 +70,6 @@ const SpotifyPlayer = () => {
         <Grid container spacing={2}>  
             {artistData.map(artist => (
                 <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>
-                <img src={artist.images[1].url} />
-                <p>Artist Name: {artist.name}</p>
-                <p>Followers: {artist.followers.total}</p>
-                <p>Genres: {artist.genres.join(', ')}</p>
-                <p>Popularity: {artist.popularity}</p>
                 <ArtistCard artist={artist} />
             </Grid>
           ))}

@@ -31,7 +31,7 @@ export default function Hero() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          pt: { xs: 14, sm: 20 },
+          pt: { xs: 2, sm: 20 },
           pb: { xs: 8, sm: 12 },
         }}
       >

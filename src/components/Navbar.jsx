@@ -16,6 +16,7 @@ const Navbar = () => {
                     className="navbar-toggler" 
                     type="button" 
                     onClick={toggleMenu}
+                    style={{color:'var(--secondary)', backgroundColor:'var(--terciary)'}}    
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>

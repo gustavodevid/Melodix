@@ -68,13 +68,20 @@ export default function Hero() {
               variant="outlined"
               aria-label="Enter your email address"
               placeholder="Procure um artista"
-              style={{fontFamily:'Poppins', backgroundColor:'var(--secondary)'}}
+              style={{fontFamily:'Poppins', 
+              backgroundColor:'var(--secondary)',
+              borderRadius: '10px',
+              color: '#fff',
+            }}
               inputProps={{
                 autocomplete: 'off',
                 ariaLabel: 'Search for a artist',
+                style: {
+                  color: 'var(--primary)',
+                },
               }}
             />
-            <Button variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--secondary)', color:'var(--primary)'}}>
+            <Button variant="contained" style={{fontFamily:'Poppins', backgroundColor:'var(--terciary)', color:'var(--secondary)'}}>
               Procurar
             </Button>
           </Stack>

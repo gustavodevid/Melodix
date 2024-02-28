@@ -38,4 +38,23 @@ const fetchGenreArtists = async (token, genre, setArtistData, setError) => {
   }
 };
 
-export { fetchToken, fetchGenreArtists };
+const fetchTopSongs = async (token, setSongs, setError ) => {
+  try {
+    const response = await axios.get(
+      'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: {
+          limit: 50
+        }
+      }
+    );
+    setSongs(response.data.items);
+  } catch (error) {
+    setError(error);
+  }
+};
+
+export { fetchToken, fetchGenreArtists, fetchTopSongs };

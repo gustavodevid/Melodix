@@ -1,9 +1,8 @@
 // src/components/SpotifyPlayer.js
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Grid } from '@mui/material';
 import ArtistCard from '../components/ArtistCard';
-import { fetchGenreArtists, fetchToken } from '../js/Artists';
+import { fetchGenreArtists, fetchToken } from '../js/script';
 
 const Artists = () => {
   const [token, setToken] = useState('');
@@ -40,7 +39,7 @@ const Artists = () => {
   else {
     return (
       <div>
-        <div className="navbar navbar-expand-lg" style={{right: 0}}>
+        <div className="navbar">
             <form className="d-flex" onSubmit={handleSubmit}>
               <select className="form-select" style={{backgroundColor:'var(--secondary)'}} onChange={handleGenreChange} value={selectedGenre}>
                 <option value="rap">Rap</option>

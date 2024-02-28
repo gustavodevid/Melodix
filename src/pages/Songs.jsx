@@ -1,26 +1,17 @@
 import { useState, useEffect } from 'react';
-import { fetchToken, fetchTopSongs } from '../js/script';
+import { fetchTopSongs } from '../js/script';
 import { Grid, Typography } from '@mui/material';
 import SongCard from '../components/SongCard';
 
 const TopSongs = () => {
-  const [token, setToken] = useState('');
   const [songs, setSongs] = useState([]);
   const [error, setError] = useState(null);
-  const clientId = '879496c5b323472bbd08843975309a97';
-  const clientSecret = 'b8108264c4fa4a2d9b90d62720d065b9';
-
-  useEffect(() => {
-    fetchToken(clientId, clientSecret, setToken, setError);
-  }, []);
 
   useEffect(() => {
     if (token) {
       fetchTopSongs(token, setSongs, setError);
     }
   }, [token]);
-
-
 
   if (error) {
     return <div>Error: {error.message}</div>;

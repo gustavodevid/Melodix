@@ -1,0 +1,24 @@
+:root {
+  font-family: Poppins;
+  --primary:#FBFFF1;
+  --secondary:#3066BE;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} 
+::-webkit-scrollbar {
+  width: 10px; 
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px; 
+}
+
+body {
+  font-family: Poppins;
+  background-color: var(--primary);
+}

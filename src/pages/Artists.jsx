@@ -66,7 +66,6 @@ const SpotifyPlayer = () => {
   } else {
     return (
       <div>
-        <h1>Artists</h1>
         <Grid container spacing={2}>  
             {artistData.map(artist => (
                 <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>

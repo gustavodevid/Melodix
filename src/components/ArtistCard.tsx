@@ -38,23 +38,23 @@ export default function artistCard( { artist }) {
   };
 
   return (
-    <Card className='card' sx={{ maxWidth: 345 }}>
+    <Card className='card' sx={{ maxWidth: 345, backgroundColor:'var(--secondary)' }}>
       <CardMedia
         component="img"
         style={{ objectPosition: 'center top', height: 300, width: '100%', objectFit: 'cover' }}
         image={artist.images[1].url}
       />
       <CardContent>
-        <Typography variant="h5" color="#000" style={{fontFamily:'Poppins'}}>
+        <Typography variant="h5" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          {artist.name}
         </Typography>
-        <Typography variant="body2" color="#000" style={{fontFamily:'Poppins'}}>
+        <Typography variant="body2" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          {artist.followers.total} Followers on Spotify
         </Typography>
-        <Typography variant="body2" color="#000" style={{fontFamily:'Poppins'}}>
+        <Typography variant="body2" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          Genres: {artist.genres.join(', ')}
         </Typography>
-        <Typography variant="body2" color="#000" style={{fontFamily:'Poppins'}}>
+        <Typography variant="body2" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          Popularity level: {artist.popularity}
         </Typography>
       </CardContent>    

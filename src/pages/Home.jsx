@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar';
+import Artists from '../components/Artists';
 
 const Home = () => {
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <div>
         <Navbar isLoginPage={false}/>
+        <Artists />
       </div>
     </>
   );

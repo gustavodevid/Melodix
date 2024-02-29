@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { params, codeVerifier } from '../js/Login';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import { fetchGenreArtists, fetchToken } from '../js/script';
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-import ArtistCard from '../components/ArtistCard';
+import ArtistCard from './ArtistCard';
 
 export default function Artists () {
     const [token, setToken] = useState('');
@@ -26,6 +26,7 @@ export default function Artists () {
     const handleSubmit = (event) => {
       event.preventDefault();
     };    
+    
     return (
         <div>
         <div className="navbar">
@@ -33,6 +34,10 @@ export default function Artists () {
               <select className="form-select" style={{backgroundColor:'var(--secondary)'}} onChange={handleGenreChange} value={selectedGenre}>
                 <option defaultValue="Pop">Pop</option>
                 <option value="Rap">Rap</option>
+                <option value="Rock">Rock</option>
+                <option value="Trap">Trap</option>
+                <option value="Indie">Indie</option>
+                <option value="Eletronic">Eletronic</option>
               </select>
             </form>
           </div>

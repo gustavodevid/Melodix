@@ -1,8 +1,7 @@
 const clientId = '879496c5b323472bbd08843975309a97';
-const redirectUri = 'http://localhost:5173/';
+const redirectUri = 'http://localhost:5173/home';
 
 const scope = 'user-read-private user-read-email user-library-read user-library-modify playlist-read-private playlist-modify-private playlist-modify-public user-read-recently-played user-top-read';
-
 
 const sha256 = async (plain) => {
     const encoder = new TextEncoder()

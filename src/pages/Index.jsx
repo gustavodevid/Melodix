@@ -6,40 +6,17 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { params, codeVerifier } from '../js/Login';
 import Navbar from '../components/Navbar';
-import { getToken } from '../js/script';
-import { useNavigate } from 'react-router-dom'; 
-import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-  const authUrl = new URL("https://accounts.spotify.com/authorize");
-  const navigate = useNavigate();
+const Index = () => {
+  // const authUrl = new URL("https://accounts.spotify.com/authorize");
 
-  const handleLogin = () => {
-    window.localStorage.setItem('code_verifier', codeVerifier);
-    authUrl.search = new URLSearchParams(params).toString();
-    window.location.href = authUrl.toString();
-  };
+  // const handleLogin = () => {
+  //   window.localStorage.setItem('code_verifier', codeVerifier);
+  //   authUrl.search = new URLSearchParams(params).toString();
+  //   window.location.href = authUrl.toString();
+  // };
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const handleAuthorization = async () => {
-      try {
-        if (code) {
-          await getToken(code);
-          navigate('/home');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    // Verifica se há um código presente na URL antes de chamar handleAuthorization
-    if (code) {
-      handleAuthorization();
-    }
-  }, []);
-   
   return (
     <div>
       <Navbar isLoginPage={true} />
@@ -94,9 +71,11 @@ const Login = () => {
               useFlexGap
               sx={{ pt: 2, width: { xs: '100%', sm: 'auto' }, fontFamily: 'Poppins' }}
             >
-              <Button onClick={handleLogin} variant="contained" style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}>
-                Login com Spotify
+              <Link to='/home'>
+              <Button variant="contained" style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}>
+                Get Started
               </Button>
+              </Link>
             </Stack>
           </Stack>
         </Container>
@@ -105,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Index;

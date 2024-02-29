@@ -1,6 +1,25 @@
 import axios from 'axios';
 const clientId = '879496c5b323472bbd08843975309a97';
-const redirectUri = 'http://localhost:5173/';
+const redirectUri = 'http://localhost:5173/home';
+
+const fetchToken = async (clientId, clientSecret, setToken, setError) => {
+  try {
+    const response = await axios.post("https://accounts.spotify.com/api/token", null, {
+      params: {
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        client_secret: clientSecret
+      },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+
+    setToken(response.data.access_token);
+  } catch (error) {
+    setError(error);
+  }
+};
 
 const fetchGenreArtists = async ( token, genre, setArtistData, setError) => {
   console.log(token);
@@ -57,8 +76,7 @@ const getStoredToken = () => {
   }
 };
 
-const getToken = async code => {
-  let codeVerifier = localStorage.getItem('code_verifier');
+const getToken = async (code, codeVerifier) => {
   if (!codeVerifier) {
     console.error('Código de verificador não encontrado no localStorage');
     return;
@@ -89,4 +107,4 @@ const getToken = async code => {
   }
 };
 
-export {  fetchGenreArtists, fetchTopSongs, getStoredToken, getToken };
+export { fetchToken, fetchGenreArtists, fetchTopSongs, getStoredToken, getToken };

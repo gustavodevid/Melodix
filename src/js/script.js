@@ -1,6 +1,6 @@
 import axios from 'axios';
 const clientId = '879496c5b323472bbd08843975309a97';
-const redirectUri = 'http://localhost:5173/';
+const redirectUri = 'https://melodix.vercel.app/';
 
 const fetchGenreArtists = async ( token, genre, setArtistData, setError) => {
   console.log(token);

@@ -1,49 +1,60 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import queryString from 'query-string';
 import Navbar from '../components/Navbar';
+import { fetchGenreArtists } from '../js/script';
+import { Grid } from '@mui/material';
+import ArtistCard from '../components/ArtistCard';
 
-const SpotifyPlayer = () => {
-  const [token, setToken] = useState('');
-  const clientId = '879496c5b323472bbd08843975309a97';
-  const clientSecret = 'b8108264c4fa4a2d9b90d62720d065b9';
-  const location = useLocation();
+const Home = () => {
+  const [artistData, setArtistData] = useState([]);
+  const [error, setError] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState('Pop');
 
   useEffect(() => {
-    const queryParams = queryString.parse(location.search);
-    const code = queryParams.code;
-    if (code) {
-      fetchToken(code);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('access_token')
+        await fetchGenreArtists(token, selectedGenre, setArtistData, setError);
+      } catch (error) {
+        console.error('Erro ao obter token ou buscar artistas:', error);
+      }
+    };
+    if(selectedGenre) {
+      fetchData();
     }
-  }, [location.search]);
+  }, [selectedGenre]);
 
-  const fetchToken = async (code) => {
-    try {
-      const response = await axios.post("https://accounts.spotify.com/api/token", null, {
-        params: {
-          grant_type: 'authorization_code',
-          code: code,
-          redirect_uri: 'http://localhost:5173/home'
-        },
-        auth: {
-          username: clientId,
-          password: clientSecret
-        }
-      });
-      setToken(response.data.access_token);
-    } catch (error) {
-      setError(error);
-    }
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value);
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
   };
 
     return (
       <>
         <div>
           <Navbar isLoginPage={false}/>
+          <div>
+        <div className="navbar">
+            <form className="d-flex" onSubmit={handleSubmit}>
+              <select className="form-select" style={{backgroundColor:'var(--secondary)'}} onChange={handleGenreChange} value={selectedGenre}>
+                <option defaultValue="Pop">Pop</option>
+                <option value="Rap">Rap</option>
+              </select>
+            </form>
+          </div>
+        <Grid container spacing={2}>  
+            {artistData.map(artist => (
+                <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>
+                <ArtistCard artist={artist} />
+            </Grid>
+          ))}
+          </Grid>
+      </div>
         </div>
       </>
     );
   }
 
-export default SpotifyPlayer;
+export default Home;

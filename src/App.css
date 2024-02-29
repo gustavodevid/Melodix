@@ -24,3 +24,7 @@ body {
   font-family: Poppins;
   background-color: var(--primary);
 }
+
+.logo {
+  width: 100px;
+}

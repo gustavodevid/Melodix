@@ -1,25 +1,9 @@
 import axios from 'axios';
+const clientId = '879496c5b323472bbd08843975309a97';
+const redirectUri = 'http://localhost:5173/';
 
-const fetchToken = async (clientId, clientSecret, setToken, setError) => {
-  try {
-    const response = await axios.post("https://accounts.spotify.com/api/token", null, {
-      params: {
-        grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret
-      },
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-
-    setToken(response.data.access_token);
-  } catch (error) {
-    setError(error);
-  }
-};
-
-const fetchGenreArtists = async (token, genre, setArtistData, setError) => {
+const fetchGenreArtists = async ( token, genre, setArtistData, setError) => {
+  console.log(token);
   try {
     const response = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
@@ -57,5 +41,52 @@ const fetchTopSongs = async (token, setSongs, setError ) => {
   }
 };
 
+const getStoredToken = () => {
+  try {
+    const token = localStorage.getItem('access_token');
+    console.log(token);
+    if (token) {
+      return token;
+    } else {
+      console.log('Nenhum token encontrado no localStorage.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Erro ao recuperar o token do localStorage:', error);
+    return null;
+  }
+};
 
-export { fetchToken, fetchGenreArtists, fetchTopSongs };
+const getToken = async code => {
+  let codeVerifier = localStorage.getItem('code_verifier');
+  if (!codeVerifier) {
+    console.error('Código de verificador não encontrado no localStorage');
+    return;
+  }
+
+  const payload = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      client_id: clientId,
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: redirectUri,
+      code_verifier: codeVerifier,
+    }),
+  };
+
+  const url = "https://accounts.spotify.com/api/token";
+  try {
+    const response = await fetch(url, payload);
+    const data = await response.json();
+    localStorage.setItem('access_token', data.access_token);
+    console.log(data.access_token);
+  } catch (error) {
+    console.error('Erro ao obter token:', error);
+  }
+};
+
+export {  fetchGenreArtists, fetchTopSongs, getStoredToken, getToken };

@@ -1,7 +1,7 @@
 import { fetchGenreArtists, fetchToken } from '../js/script';
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-import ArtistCard from './ArtistCard';
+import ArtistCard from '../components/ArtistCard';
 
 export default function Artists () {
     const [token, setToken] = useState('');
@@ -10,6 +10,7 @@ export default function Artists () {
     const [selectedGenre, setSelectedGenre] = useState('Rap');
     const clientId='879496c5b323472bbd08843975309a97';
     const clientSecret='b8108264c4fa4a2d9b90d62720d065b9';  
+    
     useEffect(() => {
         fetchToken(clientId, clientSecret, setToken, setError);
       }, []);
@@ -19,6 +20,7 @@ export default function Artists () {
         fetchGenreArtists(token, selectedGenre, setArtistData, setError, 5); 
       }
     }, [token, selectedGenre]);   
+    
     const handleGenreChange = (event) => {
       setSelectedGenre(event.target.value);
     };
@@ -41,11 +43,11 @@ export default function Artists () {
               </select>
             </form>
           </div>
-        <Grid container spacing={2}>  
+          <Grid container spacing={2}>  
             {artistData.map(artist => (
                 <Grid key={artist.id} item xs={12} sm={6} md={4} lg={3}>
                 <ArtistCard artist={artist} />
-            </Grid>
+              </Grid>
           ))}
           </Grid>
       </div>

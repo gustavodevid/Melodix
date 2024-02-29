@@ -21,7 +21,7 @@ const fetchToken = async (clientId, clientSecret, setToken, setError) => {
   }
 };
 
-const fetchGenreArtists = async ( token, genre, setArtistData, setError) => {
+const fetchGenreArtists = async ( token, genre, setArtistData, setError, limit) => {
   console.log(token);
   try {
     const response = await axios.get('https://api.spotify.com/v1/search', {
@@ -31,7 +31,7 @@ const fetchGenreArtists = async ( token, genre, setArtistData, setError) => {
       params: {
         q: `genre:${genre}`,
         type: 'artist',
-        limit: 10, 
+        limit: limit, 
       },
     });
 

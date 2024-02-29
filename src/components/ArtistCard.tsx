@@ -44,7 +44,7 @@ export default function artistCard( { artist }) {
         style={{ objectPosition: 'center top', height: 300, width: '100%', objectFit: 'cover' }}
         image={artist.images[1].url}
       />
-      <CardContent>
+      <CardContent style={{ height: '100%' }}>
         <Typography variant="h5" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          {artist.name}
         </Typography>

@@ -14,6 +14,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,6 +60,11 @@ export default function artistCard( { artist }) {
         <Typography variant="body2" color="var(--primary)" style={{fontFamily:'Poppins'}}>
          Popularity level: {artist.popularity}
         </Typography>
+        <Link to={`/artist-page/${artist.id}`}>
+        <Button sx={{margin:1}} endIcon={<ArrowForwardIcon />} variant="outlined" href='' target='blank'>
+          Ver mais
+        </Button>
+        </Link>
       </CardContent>    
     </Card>
   );

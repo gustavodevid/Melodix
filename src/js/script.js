@@ -22,7 +22,6 @@ const fetchToken = async (clientId, clientSecret, setToken, setError) => {
 };
 
 const fetchGenreArtists = async ( token, genre, setArtistData, setError, limit) => {
-  console.log(token);
   try {
     const response = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
@@ -107,4 +106,66 @@ const getToken = async (code, codeVerifier) => {
   }
 };
 
-export { fetchToken, fetchGenreArtists, fetchTopSongs, getStoredToken, getToken };
+async function fetchArtistInfo(artistId, accessToken, setArtistData) {
+  const url = `https://api.spotify.com/v1/artists/${artistId}`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    setArtistData(response.data)
+  } catch (error) {
+    console.error('Erro ao buscar informações do artista:', error);
+    return null;
+  }
+}
+
+async function fetchArtistAlbums(artistId, accessToken, setAlbums) {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/albums`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    setAlbums(response.data)
+  } catch (error) {
+    console.error('Erro ao buscar álbuns do artista:', error);
+    return null;
+  }
+}
+
+async function fetchArtistTopTracks(artistId, accessToken, setTracks) {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    setTracks(response.data);
+  } catch (error) {
+    console.error('Erro ao buscar as principais faixas do artista:', error);
+    return null;
+  }
+}
+
+async function fetchRelatedArtists(artistId, token, setRelatedArtists) {
+  try {
+      const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/related-artists`, {
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      });
+      setRelatedArtists(response.data.artists);
+  } catch (error) {
+      throw new Error('Erro ao buscar artistas relacionados:', error);
+  }
+}
+
+export { fetchToken, fetchGenreArtists, fetchTopSongs, getStoredToken, getToken, fetchArtistInfo, fetchArtistAlbums, fetchArtistTopTracks, fetchRelatedArtists };

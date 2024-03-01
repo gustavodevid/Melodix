@@ -1,7 +1,9 @@
 import { fetchToken, fetchArtistInfo, fetchArtistAlbums, fetchArtistTopTracks, fetchRelatedArtists } from '../js/script';
 import { useState, useEffect } from 'react';
-import { Box, Card, CardContent, CardMedia, CircularProgress, Divider, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Divider,  Paper,  Slide,  Slider,  Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import Carousel from 'react-material-ui-carousel';
+import ArtistCard from '../components/ArtistCard';
 
 export default function ArtistPage () {
     const [token, setToken] = useState('');
@@ -127,8 +129,9 @@ export default function ArtistPage () {
             />
       </CardContent>
     </Card>
-    <div style={{ marginTop: '30px' }}>
-                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Álbuns do Artista</Typography>
+
+    {/* <div style={{ marginTop: '30px' }}>
+                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Albums</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {albums.items.map(album => (
                         <Card key={album.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
@@ -144,10 +147,10 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div>
+    </div> */}
 
-    <div style={{ marginTop: '30px' }}>
-                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Álbuns do Artista</Typography>
+    {/* <div style={{ marginTop: '30px' }}>
+                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Top Tracks</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {tracks.tracks.map(track => (
                         <Card key={track.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
@@ -163,10 +166,10 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div>
+    </div> */}
 
-    <div style={{ marginTop: '30px' }}>
-                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Álbuns do Artista</Typography>
+    {/* <div style={{ marginTop: '30px' }}>
+                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Related Artists</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {relatedArtists.map(relatedArtist => (
                         <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
@@ -181,7 +184,30 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div>
+    </div> */}
+
+    <Carousel
+      sx={{ width: '100%', height: '100hv' }}
+      animation="slide"
+      autoPlay={true}
+      navButtonsAlwaysVisible={true}
+      indicatorIconButtonProps={{
+        style: {
+          color: 'black'
+        }
+      }}
+      activeIndicatorIconButtonProps={{
+        style: {
+          color: 'red'
+        }
+      }}
+    >
+      {relatedArtists.map(relatedArtist => (
+                        <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
+                            <ArtistCard artist={relatedArtist} />
+                        </Card>
+                    ))}
+    </Carousel>
 
             </div>
       </div>

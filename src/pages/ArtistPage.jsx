@@ -193,12 +193,12 @@ export default function ArtistPage () {
       navButtonsAlwaysVisible={true}
       indicatorIconButtonProps={{
         style: {
-          color: 'black'
+          color: 'var(--secondary)'
         }
       }}
       activeIndicatorIconButtonProps={{
         style: {
-          color: 'red'
+          color: 'var(--terciary)'
         }
       }}
     >

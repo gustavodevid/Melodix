@@ -59,7 +59,6 @@ const Home = () => {
       </Grid>
     </Container>
       </div>
-      <ProductCategories />
     </>
   );
 }

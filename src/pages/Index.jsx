@@ -20,7 +20,8 @@ const Index = () => {
       <Navbar isLoginPage={true} />
       <div className='content'>
         <div className='harmony'></div>
-        <Box
+        <div className='hero'>
+            <Box
         id="hero"
         sx={({
           width: '100%',
@@ -33,23 +34,24 @@ const Index = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            pt: { xs: 2, sm:  15 },
-            pb: { xs: 8, sm: 12 },
+            pt: { xs: 1, sm:  15 },
+            pb: { xs: 22, sm: 12 }
           }}
         >
           <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
           <Typography
                 component="span"
-                variant="h1"
+                variant="h2"
                 sx={{
-                  color: 'var(--secondary)',
-                  fontFamily: 'Poppins'
+                  color: 'var(--terciary)',
+                  fontFamily: 'Poppins',
+                  fontWeight:'bold'
                 }}
               >Harmony
               </Typography>
               <Typography
                 component="span"
-                variant="h3"
+                variant="h4"
                 sx={{
                   color: 'var(--secondary)',
                   fontFamily: 'Poppins'
@@ -76,6 +78,7 @@ const Index = () => {
           </Stack>
         </Container>
         </Box>
+      </div>
       </div>
     </div>
   );

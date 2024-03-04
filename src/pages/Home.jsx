@@ -1,25 +1,23 @@
-import Hero from '../components/Hero';
-import Cartao from '../components/Cartao';
 import ArtistCard from '../components/ArtistCard';
 import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
 import { fetchGenreArtists, fetchToken } from '../js/script';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import ProductCategories from '../components/Categories';
 
 const Home = () => {
   const [token, setToken] = useState('');
   const [artistData, setArtistData] = useState([]);
-  const [error, setError] = useState(null)
   const clientId='879496c5b323472bbd08843975309a97';
   const clientSecret='b8108264c4fa4a2d9b90d62720d065b9';
   
   useEffect(() => {
-    fetchToken(clientId, clientSecret, setToken, setError);
+    fetchToken(clientId, clientSecret, setToken);
   }, []);
   
   useEffect(() => {
     if (token) {
-      fetchGenreArtists(token, "Pop", setArtistData, setError, 3); 
+      fetchGenreArtists(token, "Pop", setArtistData, 3); 
     }
   }, [token]);
 
@@ -61,6 +59,7 @@ const Home = () => {
       </Grid>
     </Container>
       </div>
+      <ProductCategories />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Divider,  
 import { useParams } from 'react-router-dom';
 import Carousel from 'react-material-ui-carousel';
 import ArtistCard from '../components/ArtistCard';
+import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
 export default function ArtistPage () {
     const [token, setToken] = useState('');
@@ -130,7 +131,7 @@ export default function ArtistPage () {
       </CardContent>
     </Card>
 
-    {/* <div style={{ marginTop: '30px' }}>
+    <div style={{ marginTop: '30px' }}>
                 <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Albums</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {albums.items.map(album => (
@@ -147,9 +148,9 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div> */}
+    </div>
 
-    {/* <div style={{ marginTop: '30px' }}>
+    <div style={{ marginTop: '30px' }}>
                 <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Top Tracks</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {tracks.tracks.map(track => (
@@ -166,7 +167,7 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div> */}
+    </div>
 
     {/* <div style={{ marginTop: '30px' }}>
                 <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Related Artists</Typography>
@@ -185,12 +186,20 @@ export default function ArtistPage () {
                     ))}
                 </div>
     </div> */}
-
+    <div 
+    style={{
+    }}>
+        <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', marginTop:'20px', padding: '10px', color:'var(--secondary)' }}>
+         Discover more <AutoAwesomeOutlinedIcon />  
+         </Typography>
     <Carousel
-      sx={{ width: '100%', height: '100hv' }}
-      animation="slide"
+      sx={{ 
+        width: { sm: '100%', md: '60%' },
+        textAlign: { sm: 'left', md: 'center' }
+       }}
+       animation="slide"
       autoPlay={true}
-      navButtonsAlwaysVisible={true}
+      navButtonsAlwaysVisible={false}
       indicatorIconButtonProps={{
         style: {
           color: 'var(--secondary)'
@@ -203,11 +212,12 @@ export default function ArtistPage () {
       }}
     >
       {relatedArtists.map(relatedArtist => (
-                        <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
-                            <ArtistCard artist={relatedArtist} />
+        <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }} >
+                          <ArtistCard artist={relatedArtist} icon={<AutoAwesomeOutlinedIcon/>}/>
                         </Card>
                     ))}
     </Carousel>
+      </div>
 
             </div>
       </div>

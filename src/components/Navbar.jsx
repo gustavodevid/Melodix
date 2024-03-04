@@ -8,8 +8,8 @@ const Navbar = ({ isLoginPage }) => {
         setIsOpen(!isOpen);
     };
 
-    return (    
-        <nav className="navbar navbar-expand-lg">
+    return (
+        <nav className="navbar navbar-expand">
             <div className="container">
                 <img src="harmonylogo.png" className='logo'/>
                 <Link className="navbar-brand" to="#" style={{color: 'var(--secondary)'}}>Harmony</Link>

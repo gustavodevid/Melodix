@@ -2,7 +2,7 @@ import axios from 'axios';
 const clientId = '879496c5b323472bbd08843975309a97';
 const redirectUri = 'http://localhost:5173/home';
 
-const fetchToken = async (clientId, clientSecret, setToken, setError) => {
+const fetchToken = async (clientId, clientSecret, setToken) => {
   try {
     const response = await axios.post("https://accounts.spotify.com/api/token", null, {
       params: {
@@ -17,11 +17,11 @@ const fetchToken = async (clientId, clientSecret, setToken, setError) => {
 
     setToken(response.data.access_token);
   } catch (error) {
-    setError(error);
+    console.log(error);
   }
 };
 
-const fetchGenreArtists = async ( token, genre, setArtistData, setError, limit) => {
+const fetchGenreArtists = async ( token, genre, setArtistData, limit) => {
   try {
     const response = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
@@ -36,7 +36,7 @@ const fetchGenreArtists = async ( token, genre, setArtistData, setError, limit) 
 
     setArtistData(response.data.artists.items);
   } catch (error) {
-    setError(error);
+    console.log(error);
   }
 };
 

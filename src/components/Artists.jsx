@@ -6,17 +6,16 @@ import ArtistCard from './ArtistCard';
 export default function Artists () {
     const [token, setToken] = useState('');
     const [artistData, setArtistData] = useState([]);
-    const [error, setError] = useState(null);
     const [selectedGenre, setSelectedGenre] = useState('Rap');
     const clientId='879496c5b323472bbd08843975309a97';
     const clientSecret='b8108264c4fa4a2d9b90d62720d065b9';  
     useEffect(() => {
-        fetchToken(clientId, clientSecret, setToken, setError);
+        fetchToken(clientId, clientSecret, setToken);
       }, []);
 
     useEffect(() => {
       if (token) {
-        fetchGenreArtists(token, selectedGenre, setArtistData, setError, 5); 
+        fetchGenreArtists(token, selectedGenre, setArtistData, 5); 
       }
     }, [token, selectedGenre]);   
     const handleGenreChange = (event) => {

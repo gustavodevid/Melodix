@@ -12,12 +12,12 @@ export default function Artists () {
     const clientSecret='b8108264c4fa4a2d9b90d62720d065b9';  
     
     useEffect(() => {
-        fetchToken(clientId, clientSecret, setToken, setError);
+        fetchToken(clientId, clientSecret, setToken);
       }, []);
 
     useEffect(() => {
       if (token) {
-        fetchGenreArtists(token, selectedGenre, setArtistData, setError, 5); 
+        fetchGenreArtists(token, selectedGenre, setArtistData, 5); 
       }
     }, [token, selectedGenre]);   
     

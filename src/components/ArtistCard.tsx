@@ -42,13 +42,14 @@ export default function artistCard( { artist, icon }) {
   };
 
   return (
-    <Card className='card' sx={{ maxWidth: 345, backgroundColor:'var(--fifth)' }}>
+    <Card className='card' sx={{ maxWidth: 345, backgroundColor:'var(--fifth)', borderRadius:'999px' }}>
       <CardMedia
         component="img"
         style={{ objectPosition: 'center top', 
         height: 300, 
         width: '100%', 
         objectFit: 'cover',
+        borderRadius:'10px'
         }}
         image={artist.images[1].url}
       />

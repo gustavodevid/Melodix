@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Index from './pages/Index';
 import Artists from './pages/Artists';
 import ArtistPage from './pages/ArtistPage';
+import Albums from './pages/Albums';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" element={<Index />} />
         <Route exact path="/artists" element={<Artists />} />
         <Route exact path="/artist-page/:artistId" element={<ArtistPage />} />
+        <Route exact path="/albums/:artistId" element={<Albums />} />
       </Routes>
     </Router>
     </>

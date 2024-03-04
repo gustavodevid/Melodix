@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import Resourses from '../components/Resourses';
 
 const Index = () => {
   // const authUrl = new URL("https://accounts.spotify.com/authorize");

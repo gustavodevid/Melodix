@@ -1,7 +1,7 @@
 import { fetchToken, fetchArtistInfo, fetchArtistAlbums, fetchArtistTopTracks, fetchRelatedArtists } from '../js/script';
 import { useState, useEffect } from 'react';
-import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Divider,  Paper,  Slide,  Slider,  Typography } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Container, Divider,  Paper,  Slide,  Slider,  Typography } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 import Carousel from 'react-material-ui-carousel';
 import ArtistCard from '../components/ArtistCard';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
@@ -34,7 +34,7 @@ export default function ArtistPage () {
         const fetchAlbums = async () => {
           if (token) {
             try {
-              await fetchArtistAlbums(artistId, token, setAlbums);
+              await fetchArtistAlbums(artistId, token, setAlbums, '3');
             } catch (error) {
               console.error('Erro ao buscar álbuns do artista:', error);
             } finally {
@@ -85,7 +85,7 @@ export default function ArtistPage () {
         <div>
             <div>
                 <Typography style={{fontFamily:'Poppins', marginBottom:'20px'}} component="h2" variant="h4" color="var(--secondary)">
-                Is this your favorite artist?
+                {artist.name} is your favorite artist?
                 </Typography>
             </div>
             <div>
@@ -132,10 +132,10 @@ export default function ArtistPage () {
     </Card>
 
     <div style={{ marginTop: '30px' }}>
-                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Albums</Typography>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>{artist.name} Albums</Typography>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent:'center' }}>
                     {albums.items.map(album => (
-                        <Card key={album.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
+                        <Card key={album.id} style={{ width: '400px', backgroundColor: 'var(--secondary)'}}>
                             <CardMedia
                                 component="img"
                                 image={album.images[0].url}
@@ -147,10 +147,26 @@ export default function ArtistPage () {
                             </CardContent>
                         </Card>
                     ))}
-                </div>
+                    </div>
+                    <Link to={`/albums/${artistId}`}>
+                    <Button 
+                      sx={{margin:1, 
+                        color:'#fff', 
+                        backgroundColor:'var(--terciary)', 
+                        fontFamily:'Poppins',
+                        ":hover": {
+                          backgroundColor:'#fff'
+                        }
+                      }} 
+                      variant='contained' 
+                      href='' 
+                      target='blank'>
+                        See more 
+                </Button>
+                        </Link>
     </div>
 
-    <div style={{ marginTop: '30px' }}>
+    {/* <div style={{ marginTop: '30px' }}>
                 <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Artist Top Tracks</Typography>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                     {tracks.tracks.map(track => (
@@ -167,35 +183,47 @@ export default function ArtistPage () {
                         </Card>
                     ))}
                 </div>
-    </div>
-
-    {/* <div style={{ marginTop: '30px' }}>
-                <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', color:'var(--secondary)' }}>Related Artists</Typography>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                    {relatedArtists.map(relatedArtist => (
-                        <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }}>
-                            <CardMedia
-                                component="img"
-                                image={relatedArtist.images[0].url}
-                                alt={relatedArtist.name}
-                            />
-                            <CardContent>
-                                <Typography variant="subtitle1">{relatedArtist.name}</Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
     </div> */}
-    <div 
-    style={{
-    }}>
+
+    <Box
+          id="dados"
+          sx={{
+            py: 6,
+          }}
+        >
+          <Container>
+            <Typography variant="h3" sx={{ color: 'var(--secondary)', fontFamily: 'Poppins', textAlign: 'center' }}>Best {artist.name} songs</Typography>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ backgroundColor: 'var(--primary)', color: 'var(--secondary)', fontFamily: 'Poppins' }}>
+                    <th style={{ padding: '8px', border: '1px solid var(--secondary)' }}>Track</th>
+                    <th style={{ padding: '8px', border: '1px solid var(--secondary)' }}>Release Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tracks.tracks.map(track => (
+                    <tr key={track.id} style={{ fontFamily: 'Poppins', color:'var(--secondary)' }}>
+                      <td style={{ padding: '8px', border: '1px solid var(--secondary)' }}>{track.name}</td>
+                      <td style={{ padding: '8px', border: '1px solid var(--secondary)' }}>{track.album.release_date}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Container>
+        </Box>
+
+    <div>
         <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', marginTop:'20px', padding: '10px', color:'var(--secondary)' }}>
          Discover more <AutoAwesomeOutlinedIcon />  
          </Typography>
-    <Carousel
-      sx={{ 
-        width: { sm: '100%', md: '60%' },
-        textAlign: { sm: 'left', md: 'center' }
+    <Carousel className='carousel'
+      sx={{
+        width: '100%',
+        margin: '0 auto',
+        textAlign:'center'
+
        }}
        animation="slide"
       autoPlay={true}
@@ -212,7 +240,7 @@ export default function ArtistPage () {
       }}
     >
       {relatedArtists.map(relatedArtist => (
-        <Card key={relatedArtist.id} style={{ width: '300px', backgroundColor: 'var(--secondary)' }} >
+        <Card key={relatedArtist.id} style={{ width: '300px', borderRadius:'999px' }} >
                           <ArtistCard artist={relatedArtist} icon={<AutoAwesomeOutlinedIcon/>}/>
                         </Card>
                     ))}

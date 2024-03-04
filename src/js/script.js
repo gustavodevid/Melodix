@@ -122,13 +122,16 @@ async function fetchArtistInfo(artistId, accessToken, setArtistData) {
   }
 }
 
-async function fetchArtistAlbums(artistId, accessToken, setAlbums) {
+async function fetchArtistAlbums(artistId, accessToken, setAlbums, limit) {
   const url = `https://api.spotify.com/v1/artists/${artistId}/albums`;
 
   try {
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        limit: limit, 
       },
     });
 

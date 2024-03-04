@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
@@ -39,7 +37,7 @@ export default function Hero() {
               textAlign: 'center',
             }}
           >
-           &nbsp;
+           Harmony&nbsp;
             <Typography
               component="span"
               variant="h1"

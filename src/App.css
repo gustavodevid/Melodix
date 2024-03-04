@@ -5,7 +5,6 @@
   --terciary:#de004e;
   --quaternary:#860029;
   --fifth:#29132e;
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -28,4 +27,19 @@ body {
 
 .logo {
   width: 100px;
+}
+
+.harmony {
+  background: url(../public/harmony.png);
+  background-size: cover;
+  width: 100%;
+  height:60vh; 
+  border-radius: 20px;
+  background-position: center;
+  background-position: 60% center; 
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
 }

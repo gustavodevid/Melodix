@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
 import { fetchGenreArtists, fetchToken } from '../js/script';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import ProductCategories from '../components/Categories';
 
 const Home = () => {
   const [token, setToken] = useState('');

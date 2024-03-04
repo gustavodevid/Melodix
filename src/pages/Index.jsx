@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -19,7 +18,9 @@ const Index = () => {
   return (
     <div>
       <Navbar isLoginPage={true} />
-      <Box
+      <div className='content'>
+        <div className='harmony'></div>
+        <Box
         id="hero"
         sx={({
           width: '100%',
@@ -32,23 +33,20 @@ const Index = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            pt: { xs: 2, sm: 20 },
+            pt: { xs: 2, sm:  15 },
             pb: { xs: 8, sm: 12 },
           }}
         >
           <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
-            <Typography
-              component="h1"
-              variant="h2"
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                alignSelf: 'center',
-                textAlign: 'center',
-                fontFamily: 'Poppins'
-              }}
-            >
-              &nbsp;
+          <Typography
+                component="span"
+                variant="h1"
+                sx={{
+                  color: 'var(--secondary)',
+                  fontFamily: 'Poppins'
+                }}
+              >Harmony
+              </Typography>
               <Typography
                 component="span"
                 variant="h3"
@@ -57,9 +55,8 @@ const Index = () => {
                   fontFamily: 'Poppins'
                 }}
               >
-                Harmony é uma heroína digital que vive no mundo da música
+              Uma heroína digital que vive no mundo da música
               </Typography>
-            </Typography>
             <Typography variant="body2" textAlign="center" color='var(--secondary)' style={{ fontFamily: 'Poppins' }}>
               Ela é uma personagem carismática e apaixonada pela música, sempre pronta para ajudar os usuários a descobrir novas músicas, artistas e estilos.
             </Typography>
@@ -78,7 +75,8 @@ const Index = () => {
             </Stack>
           </Stack>
         </Container>
-      </Box>
+        </Box>
+      </div>
     </div>
   );
 };

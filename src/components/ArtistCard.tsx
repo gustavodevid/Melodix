@@ -41,6 +41,10 @@ export default function artistCard( { artist, icon }) {
     setExpanded(!expanded);
   };
 
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Card className='card' sx={{ maxWidth: 345, backgroundColor:'var(--fifth)', borderRadius:'999px' }}>
       <CardMedia
@@ -78,8 +82,7 @@ export default function artistCard( { artist, icon }) {
         }} 
         endIcon={<ArrowForwardIcon />} 
         variant='contained' 
-        href='' 
-        target='blank'>
+        onClick={handleScrollToTop}>
           Read more 
         </Button>
         </Link>

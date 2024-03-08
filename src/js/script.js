@@ -171,4 +171,26 @@ async function fetchRelatedArtists(artistId, token, setRelatedArtists) {
   }
 }
 
-export { fetchToken, fetchGenreArtists, fetchTopSongs, getStoredToken, getToken, fetchArtistInfo, fetchArtistAlbums, fetchArtistTopTracks, fetchRelatedArtists };
+async function searchArtists(query, token, setArtistSearchData) {
+  try {
+    const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=artist`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    setArtistSearchData(response.data.artists.items[0])
+  } catch (error) {
+    console.error('Erro ao buscar artistas:', error);
+  }
+}
+
+export { fetchToken, 
+  fetchGenreArtists, 
+  fetchTopSongs, 
+  getStoredToken, 
+  getToken, 
+  fetchArtistInfo, 
+  fetchArtistAlbums, 
+  fetchArtistTopTracks, 
+  fetchRelatedArtists,
+  searchArtists };

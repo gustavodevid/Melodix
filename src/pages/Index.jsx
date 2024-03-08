@@ -5,9 +5,19 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
-import Resourses from '../components/Resourses';
+import { TextField } from '@mui/material';
+import { useState } from 'react';
 
 const Index = () => {
+  const [artistName, setArtistName] = useState('');
+
+  const handleInputChange = (event) => {
+    setArtistName(event.target.value);
+  };
+
+  const handleGetStarted = () => {
+    history.push(`/home?artist=${encodeURIComponent(artistName)}`);
+  };
   // const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // const handleLogin = () => {
@@ -15,6 +25,7 @@ const Index = () => {
   //   authUrl.search = new URLSearchParams(params).toString();
   //   window.location.href = authUrl.toString();
   // };
+
 
   return (
     <div>
@@ -70,8 +81,26 @@ const Index = () => {
               useFlexGap
               sx={{ pt: 2, width: { xs: '100%', sm: 'auto' }, fontFamily: 'Poppins' }}
             >
-              <Link to='/home'>
-              <Button variant="contained" style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}>
+              <TextField
+              id="outlined-basic"
+              hiddenLabel
+              size="small"
+              sx={{backgroundColor:'var(--secondary)'}}
+              variant="outlined"
+              aria-label="Enter a artist name"
+              placeholder="Enter a artist name"
+              value={artistName}
+              onChange={handleInputChange}
+              inputProps={{
+                autocomplete: 'off',
+                ariaLabel: '',
+              }}
+            />
+              <Link to={`/home?artist=${encodeURIComponent(artistName)}`}>
+              <Button variant="contained" 
+              style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}
+              onClick={handleGetStarted}
+              >
                 Get Started
               </Button>
               </Link>

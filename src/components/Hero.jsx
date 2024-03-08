@@ -1,17 +1,18 @@
 import * as React from 'react';
+import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
     <Box
       id="hero"
-      sx={(theme) => ({
+      sx={() => ({
         width: '100%',
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
@@ -27,29 +28,7 @@ export default function Hero() {
         }}
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
-          <Typography
-            component="h1"
-            variant="h1"
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignSelf: 'center',
-              textAlign: 'center',
-            }}
-          >
-           Harmony&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              style={{fontFamily:'Poppins'}}
-              color='#fff'
-            >
-              GoW DB
-            </Typography>
-          </Typography>
-          <Typography textAlign="center" color='#fff' style={{fontFamily:'Poppins'}} >
-           A God of War DataBase
-          </Typography>
+         
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             alignSelf="center"
@@ -57,13 +36,24 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-          <Link to="/docs" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="error" endIcon={<ArrowForwardIcon />} style={{fontFamily:'Poppins'}}>
-              Get Started
+            <TextField
+              id="outlined-basic"
+              hiddenLabel
+              size="small"
+              sx={{backgroundColor:'var(--secondary)'}}
+              variant="outlined"
+              aria-label="Enter a artist name"
+              placeholder="Search a artist"
+              inputProps={{
+                autocomplete: 'off',
+                ariaLabel: '',
+              }}
+            />
+            <Button variant="contained" sx={{backgroundColor:'var(--secondary)'}}>
+              Search
             </Button>
-          </Link>
           </Stack>
-        </Stack>  
+        </Stack>
       </Container>
     </Box>
   );

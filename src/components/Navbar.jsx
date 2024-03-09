@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Button, Stack, TextField } from '@mui/material';
 
 const Navbar = ({ isLoginPage }) => {
+    const [artistName, setArtistName] = useState('');
+
+    const handleInputChange = (event) => {
+      setArtistName(event.target.value);
+    };
+
+    const handleGetStarted = () => {
+      history.push(`/home?artist=${encodeURIComponent(artistName)}`);
+    };
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -10,6 +21,7 @@ const Navbar = ({ isLoginPage }) => {
 
     return (
         <nav className="navbar navbar-expand-lg">
+            
             <div className="container">
                 <img src="harmonylogo.png" className='logo'/>
                 <Link className="navbar-brand" to="#" style={{color: 'var(--secondary)'}}>Harmony</Link>
@@ -36,6 +48,39 @@ const Navbar = ({ isLoginPage }) => {
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/songs" onClick={toggleMenu} style={{color: 'var(--secondary)'}}>Songs</Link>
+                                </li>
+                                <li className="nav-item">
+                                <Stack
+                                    direction={{ xs: 'column', sm: 'row' }}
+                                    alignSelf="center"
+                                    spacing={1}
+                                    useFlexGap
+                                    sx={{ pt: 0, width: { xs: '100%', sm: 'auto' }, fontFamily: 'Poppins' }}
+                                >
+                                <TextField
+                                id="outlined-basic"
+                                hiddenLabel
+                                size="small"
+                                sx={{backgroundColor:'var(--secondary)'}}
+                                variant="outlined"
+                                aria-label="Enter a artist name"
+                                placeholder="Enter a artist name"
+                                value={artistName}
+                                onChange={handleInputChange}
+                                inputProps={{
+                                  autocomplete: 'off',
+                                  ariaLabel: '',
+                                }}
+                                />
+                                <Link to={`/home?artist=${encodeURIComponent(artistName)}`}>
+                                <Button variant="contained" 
+                                style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}
+                                onClick={handleGetStarted}
+                                >
+                                Search
+                                </Button>
+                                </Link>
+                                </Stack>
                                 </li>
                     </ul>
                 </div>

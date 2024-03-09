@@ -1,7 +1,7 @@
 import ArtistCard from '../components/ArtistCard';
 import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
-import { fetchGenreArtists, fetchToken, searchArtists } from '../js/script';
+import {  fetchGenreArtists, fetchToken, searchArtists } from '../js/script';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
@@ -15,13 +15,16 @@ const Home = () => {
   const artistLabel = searchParams.get('artist');
   const [artistSearch, setArtistSearchData] = useState(null);
   
+
   useEffect(() => {
     fetchToken(clientId, clientSecret, setToken);
   }, []);
   
   useEffect(() => {
     if (token) {
-      fetchGenreArtists(token, "Pop", setArtistData, 3); 
+      const genres = ['Pop', 'Rock', 'Rap', 'Forro'];
+      const num = Math.floor(Math.random() * 4);
+      fetchGenreArtists(token, genres[num], setArtistData, 3); 
     }
   }, [token]);
 

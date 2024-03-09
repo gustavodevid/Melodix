@@ -86,7 +86,6 @@ const Index = () => {
               size="small"
               sx={{backgroundColor:'var(--secondary)', borderRadius:'999px'}}
               variant="outlined"
-              aria-label="Enter a artist name"
               placeholder="Enter a artist name"
               value={artistName}
               onChange={handleInputChange}

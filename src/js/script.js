@@ -184,7 +184,8 @@ async function searchArtists(query, token, setArtistSearchData) {
   }
 }
 
-export { fetchToken, 
+export { 
+  fetchToken, 
   fetchGenreArtists, 
   fetchTopSongs, 
   getStoredToken, 

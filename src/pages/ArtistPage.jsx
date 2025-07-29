@@ -12,7 +12,7 @@ export default function ArtistPage () {
     const [error, setError] = useState(null);
     const [albums, setAlbums] = useState(null);
     const [tracks, setTracks] = useState(null);
-    const [relatedArtists, setRelatedArtists] = useState(null);
+    const [relatedArtists, setRelatedArtists] = useState([]);
     const clientId='879496c5b323472bbd08843975309a97';
     const clientSecret='b8108264c4fa4a2d9b90d62720d065b9';
     const [loadingAlbums, setLoadingAlbums] = useState(true);
@@ -74,7 +74,6 @@ export default function ArtistPage () {
             }
           }
         };
-      
         fetchTracks(); 
     }, [token, artistId, setRelatedArtists]);
       

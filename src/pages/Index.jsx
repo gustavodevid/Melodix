@@ -15,9 +15,6 @@ const Index = () => {
     setArtistName(event.target.value);
   };
 
-  const handleGetStarted = () => {
-    history.push(`/home?artist=${encodeURIComponent(artistName)}`);
-  };
   // const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // const handleLogin = () => {
@@ -97,7 +94,7 @@ const Index = () => {
               <Link to={`/home?artist=${encodeURIComponent(artistName)}`}>
               <Button variant="contained" 
               style={{ fontFamily: 'Poppins', backgroundColor: 'var(--terciary)', color: 'var(--secondary)' }}
-              onClick={handleGetStarted}
+             
               >
                 Get Started
               </Button>

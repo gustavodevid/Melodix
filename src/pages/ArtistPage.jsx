@@ -217,33 +217,40 @@ export default function ArtistPage () {
         <Typography variant="h5" style={{ fontFamily: 'Poppins', marginBottom: '10px', marginTop:'20px', padding: '10px', color:'var(--secondary)' }}>
          Discover more <AutoAwesomeOutlinedIcon />  
          </Typography>
-    <Carousel className='carousel'
-      sx={{
-        width: '100%',
-        margin: '0 auto',
-        textAlign:'center'
+    
+    {relatedArtists.length > 0 ? (
+      <Carousel className='carousel'
+        sx={{
+          width: '100%',
+          margin: '0 auto',
+          textAlign:'center'
 
-       }}
-       animation="slide"
-      autoPlay={true}
-      navButtonsAlwaysVisible={false}
-      indicatorIconButtonProps={{
-        style: {
-          color: 'var(--secondary)'
-        }
-      }}
-      activeIndicatorIconButtonProps={{
-        style: {
-          color: 'var(--terciary)'
-        }
-      }}
-    >
-      {relatedArtists.map(relatedArtist => (
+         }}
+         animation="slide"
+        autoPlay={true}
+        navButtonsAlwaysVisible={false}
+        indicatorIconButtonProps={{
+          style: {
+            color: 'var(--secondary)'
+          }
+        }}
+        activeIndicatorIconButtonProps={{
+          style: {
+            color: 'var(--terciary)'
+          }
+        }}
+      >
+        {relatedArtists.map(relatedArtist => (
         <Card key={relatedArtist.id} style={{ width: '300px', borderRadius:'999px' }} >
                           <ArtistCard artist={relatedArtist} icon={<AutoAwesomeOutlinedIcon/>}/>
                         </Card>
                     ))}
     </Carousel>
+    ) : (
+  <Typography variant="body1" style={{ fontFamily: 'Poppins', color: 'var(--secondary)' }}>
+    Nenhum artista relacionado encontrado.
+  </Typography>
+)}
       </div>
 
             </div>
